@@ -1,0 +1,18 @@
+sequenceDiagram
+    participant browser
+    participant server
+
+    Note right of browser: Assuming that we start from the fact that the page is already loaded
+
+    Note right of browser: Using the JS that we receive from the server, when submitting a note, it will be added to the list of notes
+    
+    Note right of browser: After this, the JS rewrites the notes in the HTML element and sends the note to the server.
+
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+    activate server
+    Note right of browser: This POST request contains the new note as JSON data including the note content and the timestamp.
+    server-->>browser: Status Code: 201 Created
+    deactivate server
+
+    Note right of browser: Finally, if everything goes well, the server tells us that it has been successful.
+   
